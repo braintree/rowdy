@@ -53,19 +53,19 @@ MochaAdapter.prototype.refreshClient = function (callback) {
   this._client.refreshClient(callback);
 };
 
-MochaAdapter.prototype.before = function () {
-  this._server.before();
-  this._client.before();
+MochaAdapter.prototype.before = function (options) {
+  this._server.before(options);
+  this._client.before(options);
 };
-MochaAdapter.prototype.beforeEach = function () {
-  this._server.beforeEach();
-  this._client.beforeEach();
+MochaAdapter.prototype.beforeEach = function (options) {
+  this._server.beforeEach(options);
+  this._client.beforeEach(options);
 };
-MochaAdapter.prototype.afterEach = function () {
-  this._client.afterEach();
-  this._server.afterEach();
+MochaAdapter.prototype.afterEach = function (options) {
+  this._client.afterEach(options);
+  this._server.afterEach(options);
 };
-MochaAdapter.prototype.after = function () {
-  this._client.after();
-  this._server.after();
+MochaAdapter.prototype.after = function (options) {
+  this._client.after(options);
+  this._server.after(options);
 };

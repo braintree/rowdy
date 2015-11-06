@@ -6,6 +6,7 @@
   "dependencies": {
     "colors": "1.1.0",
     "lodash": "3.8.0",
+    "saucelabs": "^0.1.1",
     "portscanner": "^1.0.0"
   },
   "devDependencies": {
@@ -13,7 +14,6 @@
     "eslint": "^0.20.0",
     "mocha": "^2.2.4",
     "phantomjs": "^1.9.16",
-    "saucelabs": "^0.1.1",
     "selenium-standalone": "^4.4.0",
     "guacamole": "^1.1.2",
     "wd": "^0.3.11",

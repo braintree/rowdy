@@ -13,11 +13,14 @@ var Server = module.exports = function () {
 
 inherits(Server, Base);
 
-Server.prototype.before = function () {
+Server.prototype.before = function (options) {
   var rowdy = require("../../index");
   var self = this;
 
   before(function (done) {
+    if (options.timeout) {
+      this.timeout(options.timeout);
+    }
     // Check if actually using server.
     if (!(self.config.setting.server || {}).start) {
       return done();
@@ -31,11 +34,14 @@ Server.prototype.before = function () {
   });
 };
 
-Server.prototype.after = function () {
+Server.prototype.after = function (options) {
   var rowdy = require("../../index");
   var self = this;
 
   after(function (done) {
+    if (options.timeout) {
+      this.timeout(options.timeout);
+    }
     if (!self.server) { return done(); }
     rowdy.teardownServer(self.server, done);
   });

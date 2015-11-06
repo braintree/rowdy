@@ -85,28 +85,37 @@ Client.prototype.refreshClient = function (callback) {
   }.bind(this));
 };
 
-Client.prototype.before = function () {
+Client.prototype.before = function (options) {
   var self = this;
 
   before(function (done) {
+    if (options.timeout) {
+      this.timeout(options.timeout);
+    }
     if (self._perSuite) { return self._setupClient(done); }
     done();
   });
 };
 
-Client.prototype.beforeEach = function () {
+Client.prototype.beforeEach = function (options) {
   var self = this;
 
   beforeEach(function (done) {
+    if (options.timeout) {
+      this.timeout(options.timeout);
+    }
     if (self._perTest) { return self._setupClient(done); }
     done();
   });
 };
 
-Client.prototype.afterEach = function () {
+Client.prototype.afterEach = function (options) {
   var self = this;
 
   afterEach(function (done) {
+    if (options.timeout) {
+      this.timeout(options.timeout);
+    }
     self._failed += this.currentTest.state === "passed" ? 0 : 1;
 
     if (self._perTest) { return self._teardownClient(done); }
@@ -114,10 +123,13 @@ Client.prototype.afterEach = function () {
   });
 };
 
-Client.prototype.after = function () {
+Client.prototype.after = function (options) {
   var self = this;
 
   after(function (done) {
+    if (options.timeout) {
+      this.timeout(options.timeout);
+    }
     if (self._perSuite) { return self._teardownClient(done); }
     done();
   });
